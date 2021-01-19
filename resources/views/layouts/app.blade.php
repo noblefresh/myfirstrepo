@@ -55,7 +55,7 @@
   <aside id="ms-side-nav" class="side-nav fixed ms-aside-scrollable ms-aside-left">
     <!-- Logo -->
     <div class="logo-sn ms-d-block-lg">
-      <a class="pl-0 ml-0 text-center" href="index.html">
+      <a class="pl-0 ml-0 text-center" href="">
         <img src="{{asset('admin/img/costic/costic-logo-216x62.png')}}" alt="logo">
       </a>
     </div>
@@ -392,7 +392,7 @@
 
         </a>
       </li>
-      <li class="ms-quick-bar-item ms-has-qa" role="presentation" data-toggle="tooltip" data-placement="left" title="Launch Reminders" data-title="Reminders">
+      {{-- <li class="ms-quick-bar-item ms-has-qa" role="presentation" data-toggle="tooltip" data-placement="left" title="Launch Reminders" data-title="Reminders">
         <a href="#qa-reminder" aria-controls="qa-reminder" role="tab" data-toggle="tab">
           <i class="flaticon-bell"></i>
 
@@ -409,7 +409,7 @@
           <i class="flaticon-share-1"></i>
 
         </a>
-      </li>
+      </li> --}}
       <li class="ms-quick-bar-item ms-has-qa" role="presentation" data-toggle="tooltip" data-placement="left" title="Settings" data-title="Settings">
         <a href="#qa-settings" aria-controls="qa-settings" role="tab" data-toggle="tab">
           <i class="flaticon-gear"></i>
@@ -435,9 +435,6 @@
       </div>
 
       <div class="ms-quick-bar-body tab-content">
-
-
-
         <div role="tabpanel" class="tab-pane" id="qa-toDo">
           <div class="ms-quickbar-container ms-todo-list-container ms-scrollable">
 

@@ -99,3 +99,4 @@ Route::post('/update_term/{id}', [App\Http\Controllers\PolicyController::class, 
 Route::post('/update_delivery/{id}', [App\Http\Controllers\PolicyController::class, 'update_delivery']);
 Route::post('/save_todo', [App\Http\Controllers\TodoController::class, 'store']);
 Route::get('delete_todo/{id}', [App\Http\Controllers\TodoController::class, 'destroy']);
+Route::get('/print/{orderid}', [App\Http\Controllers\HomeController::class, 'print']);

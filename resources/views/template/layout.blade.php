@@ -106,7 +106,7 @@
                         </div>
                         <div class="right-side fw-700 mainNavCol">
                             <div class="gem-points">
-                                <a href="#"> <i class="fas fa-concierge-bell"></i>
+                                <a href="{{route('foods')}}"> <i class="fas fa-concierge-bell"></i>
                                     <span>Order Now</span>
                                 </a>
                             </div>
@@ -170,12 +170,12 @@
                                                                     <h6 class="cat-name"><a href="#" class="text-light-black">Related Pages</a></h6>
                                                                 </div>
                                                                 <ul>
-                                                                    <li><a href="restaurant.html" class="text-light-white fw-500">Verities</a>
-                                                                    <li><a href="restaurant-style-1.html" class="text-light-white fw-500">About Us</a>
+                                                                    <li><a href="{{route('foods')}}" class="text-light-white fw-500">Verities</a>
+                                                                    <li><a href="{{route('about')}}" class="text-light-white fw-500">About Us</a>
                                                                     </li>
-                                                                    <li><a href="restaurant-style-2.html" class="text-light-white fw-500">Contact</a>
+                                                                    <li><a href="{{route('contact')}}" class="text-light-white fw-500">Contact</a>
                                                                     </li>
-                                                                    <li><a href="add-restaurant.html" class="text-light-white fw-500">FAQ</a>
+                                                                    <li><a href="{{route('faq')}}" class="text-light-white fw-500">FAQ</a>
                                                                     </li>
                                                                     <li><a href="list-view.html" class="text-light-white fw-500">List View</a>
                                                                     </li>

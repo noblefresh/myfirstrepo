@@ -24,7 +24,7 @@
     </div>
     <div class="col-xl-3 col-lg-6 col-md-6">
       <div class="ms-card ms-widget has-graph-full-width ms-infographics-widget">
-        <span class="ms-chart-label bg-black"><i class="material-icons">arrow_upward</i> 3.2%</span>
+        {{-- <span class="ms-chart-label bg-black"><i class="material-icons">arrow_upward</i> 3.2%</span> --}}
         <div class="ms-card-body media">
           <div class="media-body">
             <span class="black-text"><strong>Total Product</strong></span>
@@ -36,7 +36,7 @@
     </div>
     <div class="col-xl-3 col-lg-6 col-md-6">
       <div class="ms-card ms-widget has-graph-full-width ms-infographics-widget">
-        <span class="ms-chart-label bg-red"><i class="material-icons">arrow_downward</i> 4.5%</span>
+        {{-- <span class="ms-chart-label bg-red"><i class="material-icons">arrow_downward</i> 4.5%</span> --}}
         <div class="ms-card-body media">
           <div class="media-body">
             <span class="black-text"><strong>Total Customers</strong></span>
@@ -48,7 +48,7 @@
     </div>
     <div class="col-xl-3 col-lg-6 col-md-6">
       <div class="ms-card ms-widget has-graph-full-width ms-infographics-widget">
-        <span class="ms-chart-label bg-black"><i class="material-icons">arrow_upward</i> 12.5%</span>
+        {{-- <span class="ms-chart-label bg-black"><i class="material-icons">arrow_upward</i> 12.5%</span> --}}
         <div class="ms-card-body media">
           <div class="media-body">
             <span class="black-text"><strong>Authenticated Users</strong></span>
@@ -60,7 +60,7 @@
     </div>
     <div class="col-xl-3 col-lg-6 col-md-6">
       <div class="ms-card ms-widget has-graph-full-width ms-infographics-widget">
-        <span class="ms-chart-label bg-red"><i class="material-icons">arrow_upward</i> 9.5%</span>
+        {{-- <span class="ms-chart-label bg-red"><i class="material-icons">arrow_upward</i> 9.5%</span> --}}
         <div class="ms-card-body media">
           <div class="media-body">
             <span class="black-text"><strong>Total Orders</strong></span>

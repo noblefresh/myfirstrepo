@@ -121,7 +121,7 @@
                 @endif
                 {{-- @if($status == 'can') --}}
                 {{-- <a href="#" class="btn btn-primary mr-2">Cancel Order</a> --}}
-                <a href="#" class="btn btn-primary">Print Invoice</a>
+                <a href="{{url('/print/'.$orderid)}}" class="btn btn-primary">Print Invoice</a>
             </div>
           </div>
         </div>

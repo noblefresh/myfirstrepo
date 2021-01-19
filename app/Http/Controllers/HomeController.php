@@ -117,5 +117,11 @@ class HomeController extends Controller
     public function privacy_terms_delivery(){
         return view('admin.privacy_term_delivery');
     }
+
+    // Invoice details
+    public function print($orderid){
+        $printInvoice = order::where('orderid',$orderid)->get();
+        return view('admin.receipt',['order'=>$printInvoice]);
+    }
     
 }
