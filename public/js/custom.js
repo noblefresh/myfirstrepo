@@ -217,7 +217,7 @@ $(document).ready(function(){
         // let name = $('#name').val().toString();
         // let accountid = $('#accountid').val().toString(); 
         // let transid = $('#transid').val().toString();
-
+    
         // if(amount != ""){
             
             payWithRave() // TRIGGER PAYWITHRAVE TO POP-UP
