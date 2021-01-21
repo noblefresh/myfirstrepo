@@ -1,12 +1,79 @@
 /*
-Theme Name: Quick Munch - FOOD DELIVERY & MULTIVENDOR HTML5 Template.
-Author: Metropolitan Themes
-Author URL: https://themeforest.net/user/metropolitantheme/portfolio
-Version: 1.0.0
+
 */
 (function ($) {
   'use strict';
   $(document).ready(function () {
+    // Default Function
+    $('input[name=email]').on('blur', function(){
+      // Email Validation
+      let email = $(this).val();
+      if(email != ''){
+        $.ajax({
+            type:'get',
+            url:'/CheckCustomer',
+            data:{email: email},
+            // dataType:'json',
+            // async:false,
+            success: function(response){
+              if(response == 'true'){
+                $('.email_err').text('Email already exists');
+                $('#next-1').prop('disabled', true);
+              }else{
+                $('.email_err').text('');
+                $('#next-1').prop('disabled', false);
+              }
+            },
+            error: function(r,e,error){
+              console.log(error);
+            }
+        });
+      }
+  });
+
+    function saveUser(){
+      let result = false;
+      let data = {
+        _token: $('input[name=_token]').val(),
+        fname: $('input[name=fname]').val(),
+        lname: $('input[name=lname]').val(),
+        email: $('input[name=email]').val(),
+        phone: $('input[name=phone]').val(),
+        address1: $('input[name=address1]').val(),
+        address2: $('input[name=address2]').val(),
+        city: $('input[name=city]').val(),
+        state: $('select[name=state]').val(),
+        password: $('input[name=password]').val(),
+      }
+      // alert(data.state);
+      // ajax request
+      $.ajax({
+        type:'post',
+        url:'/create_customer',
+        data:data,
+        dataType:'json',
+        async:false,
+        success: function(response){
+          if(response.status == 'success'){
+            result = true;
+          }else{
+            if(response.type == 'email'){
+              $('.email_err').text(response.message);
+            }else{
+              $('#errorModal').on('show.bs.modal', function(){
+                $('#modalMsg').text("An Unexpected eror occured");
+              });
+              $('#errorModal').modal('show');
+            }
+          }
+        },
+        error: function(r,e,error){
+          console.log(error);
+        }
+      });
+      return result;
+    }
+
     $(".delivery-add").click(function () {
       $(".location-picker").toggleClass("open");
       $(".delivery-add").toggleClass("open");
@@ -26,23 +93,68 @@ Version: 1.0.0
       $("#next-1").show();
     });
     $("#stepbtn2, #next-1, #prev-2").click(function(){
-      $("#steppanel1, #steppanel3, #steppanel4").removeClass('active');
-      $("#steppanel2").addClass('active');
+        $("#steppanel1, #steppanel3, #steppanel4").removeClass('active');
+        $("#steppanel2").addClass('active');
 
-      $("#stepbtn1").addClass('done').removeClass('active');
-      $("#step1").addClass('done').removeClass('active');
+        $("#stepbtn1").addClass('done').removeClass('active');
+        $("#step1").addClass('done').removeClass('active');
 
-      $("#stepbtn2").addClass('active');
-      $("#step2").addClass('active');
+        $("#stepbtn2").addClass('active');
+        $("#step2").addClass('active');
 
-      $("#stepbtn2, #step2").removeClass('done');
-      $("#stepbtn3, #stepbtn4").removeClass('active done');
-      $("#step3, #step4").removeClass('active done');
+        $("#stepbtn2, #step2").removeClass('done');
+        $("#stepbtn3, #stepbtn4").removeClass('active done');
+        $("#step3, #step4").removeClass('active done');
 
-      $("#next-1, #next-3, #prev-2, #prev-3, #finish-1").hide();
-      $("#next-2, #prev-1").show();
+        $("#next-1, #next-3, #prev-2, #prev-3, #finish-1").hide();
+        $("#next-2, #prev-1").show();
     });
+
     $("#stepbtn3, #next-2, #prev-3").click(function(){
+      if($(this).attr('id') == 'next-2'){
+        if(saveUser()){
+          $("#steppanel3").addClass('active');
+          $("#steppanel1, #steppanel2, #steppanel4").removeClass('active');
+
+          $("#stepbtn1").addClass('done').removeClass('active');
+          $("#step1").addClass('done').removeClass('active');
+
+          $("#stepbtn2").addClass('done').removeClass('active');
+          $("#step2").addClass('done').removeClass('active');
+
+          $("#stepbtn3").addClass('active');
+          $("#step3").addClass('active');
+
+          $("#stepbtn3, #step3").removeClass('done');
+          $("#stepbtn4").removeClass('active done');
+          $("#step4").removeClass('active done');
+
+          $("#next-1, #next-2, #prev-1, #prev-3, #finish-1").hide();
+          $("#next-3, #prev-2").show();
+        }
+      }else{
+        $("#steppanel3").addClass('active');
+        $("#steppanel1, #steppanel2, #steppanel4").removeClass('active');
+
+        $("#stepbtn1").addClass('done').removeClass('active');
+        $("#step1").addClass('done').removeClass('active');
+
+        $("#stepbtn2").addClass('done').removeClass('active');
+        $("#step2").addClass('done').removeClass('active');
+
+        $("#stepbtn3").addClass('active');
+        $("#step3").addClass('active');
+
+        $("#stepbtn3, #step3").removeClass('done');
+        $("#stepbtn4").removeClass('active done');
+        $("#step4").removeClass('active done');
+
+        $("#next-1, #next-2, #prev-1, #prev-3, #finish-1").hide();
+        $("#next-3, #prev-2").show();
+      }
+    });
+
+    $("#next-2auth").click(function(){
       $("#steppanel3").addClass('active');
       $("#steppanel1, #steppanel2, #steppanel4").removeClass('active');
 

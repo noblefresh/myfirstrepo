@@ -11,60 +11,19 @@
 
           </ol>
         </nav>
-
-        <div class="col-md-12">
-          <div class="ms-panel ms-panel-fh">
-            <div class="ms-panel-header">
-              <h6>Favourite Orders</h6>
-            </div>
-            <div class="ms-panel-body order-circle">
-
-              <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-6">
-                    <h6 class="text-center">Pizza</h6>
-                  <div class="progress-rounded progress-round-tiny">
-
-                    <div class="progress-value">12%</div>
-                    <svg>
-                      <circle class="progress-cicle bg-success animated" cx="65" cy="65" r="57" stroke-width="4" fill="none" aria-valuenow="12" aria-orientation="vertical" aria-valuemin="0" aria-valuemax="100" role="slider" style="stroke-dashoffset: 315.165px;">
-                      </circle>
-                    </svg>
-                  </div>
+        
+        <div class="row">
+          <div class="col-md-12">
+            <div class="ms-nav-item ms-search-form pb-0 py-0 mb-4" style="text-align: right">
+              <form class="ms-form" method="post">
+                <div class="ms-form-group my-0 mb-0 has-icon fs-14">
+                  <input type="search" class="ms-form-input bg-light" name="searchorder" placeholder="Search order..." value=""> <i class="flaticon-search text-disabled"></i>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-md-6">
-                      <h6 class="text-center">Mexican Noodels</h6>
-                  <div class="progress-rounded progress-round-tiny">
-                    <div class="progress-value">38.8%</div>
-                    <svg>
-                      <circle class="progress-cicle bg-primary animated" cx="65" cy="65" r="57" stroke-width="4" fill="none" aria-valuenow="38.8" aria-orientation="vertical" aria-valuemin="0" aria-valuemax="100" role="slider" style="stroke-dashoffset: 219.183px;">
-                      </circle>
-                    </svg>
-                  </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-6">
-                    <h6 class="text-center">Spicy Salad</h6>
-                  <div class="progress-rounded progress-round-tiny">
-                    <div class="progress-value">78.8%</div>
-                    <svg>
-                      <circle class="progress-cicle bg-secondary animated" cx="65" cy="65" r="57" stroke-width="4" fill="none" aria-valuenow="78.8" aria-orientation="vertical" aria-valuemin="0" aria-valuemax="100" role="slider" style="stroke-dashoffset: 75.926px;">
-                      </circle>
-                    </svg>
-                  </div>
-                </div>
-                <div class="col-xl-3 col-lg-3 col-md-6">
-                    <h6 class="text-center">French Fries</h6>
-                  <div class="progress-rounded progress-round-tiny">
-                    <div class="progress-value">100%</div>
-                    <svg>
-                      <circle class="progress-cicle bg-dark animated" cx="65" cy="65" r="57" stroke-width="4" fill="none" aria-valuenow="100" aria-orientation="vertical" aria-valuemin="0" aria-valuemax="100" role="slider" style="stroke-dashoffset: 0px;">
-                      </circle>
-                    </svg>
-                  </div>
-                </div>
-              </div>
+              </form>
             </div>
           </div>
         </div>
+
         <div class="col-12">
           <div class="ms-panel">
             <div class="ms-panel-header">
@@ -77,7 +36,7 @@
                   <thead>
                     <tr>
                       <th scope="col">Order ID</th>
-                      <th scope="col">Order Name</th>
+                      <th scope="col">Product Name</th>
                       <th scope="col">Customer Name</th>
                       <th scope="col">Location</th>
                       <th scope="col">Order Status</th>
@@ -85,7 +44,7 @@
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="order_items">
                     @foreach ($order as $item)
                     <tr>
                       <th scope="row">{{$item->orderid}}</th>

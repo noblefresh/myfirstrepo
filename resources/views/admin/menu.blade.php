@@ -12,7 +12,7 @@
             </ol>
           </nav>
         </div>
-        <div class="col-4 text-right">
+        <div class="col-4 text-right mb-3">
             <button class="btn btn-primary" data-toggle="modal" data-target="#modal-3"><i class="fas fa-plus"></i></button>
         </div>
         <?php use App\Models\product; ?>
@@ -66,7 +66,7 @@
                         <div class="ms-form-group has-icon">
                             <label>Manu Name</label>
                             <input type="text" placeholder="Name" class="form-control" name="name" required>
-                            <i class="material-icons">email</i>
+                            <i class="material-icons">adjust</i>
                         </div>
                         <div class="ms-form-group">
                             <label>Visiablity</label>

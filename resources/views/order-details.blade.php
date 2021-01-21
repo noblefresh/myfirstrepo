@@ -15,55 +15,28 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="tracking-sec">
-                        <div class="tracking-details padding-20 p-relative">
-                            <h5 class="text-light-black fw-600">Great Burger</h5>
-                            <span class="text-light-white">Estimated Delivery time</span>
-                            <h2 class="text-light-black fw-700 no-margin">9:00pm-9:10pm</h2>
-                            <div id="add-listing-tab" class="step-app">
-                                <ul class="step-steps">
-                                    <li class="done">
-                                        <a href="javascript:void(0)"> <span class="number"></span>
-                                            <span class="step-name">Order sent<br>8:38pm</span>
-                                        </a>
-                                    </li>
-                                    <li class="active">
-                                        <a href="javascript:void(0)"> <span class="number"></span>
-                                            <span class="step-name">In the works</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)"> <span class="number"></span>
-                                            <span class="step-name">Out of delivery</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0)"> <span class="number"></span>
-                                            <span class="step-name">Delivered</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <button type="button" class="fullpageview text-light-black fw-600" data-modal="modal-12">Full Page View</button>
-                            </div>
-                        </div>
-                        <div class="tracking-map">
-                            <div id="pickupmap"></div>
-                        </div>
-                    </div>
+                    @foreach ($order as $key => $item)
+                    @if($key == 0 )
+                    <?php 
+                    $name = $item->customer->name;
+                    $email = $item->customer->email;
+                    $address1 = $item->customer->address1;
+                    $address2 = $item->customer->address2;
+                    $phone = $item->customer->phone;
+                    $status = $item->status;
+                    ?>
+                    @endif
+                    @endforeach
                     <!-- recipt -->
                     <div class="recipt-sec padding-20">
                         <div class="recipt-name title u-line full-width mb-xl-20">
                             <div class="recipt-name-box">
-                                <h5 class="text-light-black fw-600 mb-2">Great Burger</h5>
-                                <p class="text-light-white ">Estimated Delivery time</p>
+                                <h5 class="text-light-black fw-600 mb-2">Order Receipt</h5>
+                                <p class="text-light-white ">Item order information</p>
                             </div>
-                            <div class="countdown-box">
-                                <div class="time-box"> <span id="mb-hours"></span>
-                                </div>
-                                <div class="time-box"> <span id="mb-minutes"></span>
-                                </div>
-                                <div class="time-box"> <span id="mb-seconds"></span>
-                                </div>
+                            <div class="countdown-box bg-danger p-2 text-light" style="text-transform: uppercase">
+                                {{$status}}
+                                
                             </div>
                         </div>
                         <div class="u-line mb-xl-20">
@@ -71,18 +44,6 @@
                                 <div class="col-lg-4">
                                     <div class="recipt-name full-width padding-tb-10 pt-0">
                                         <h5 class="text-light-black fw-600">Delivery (ASAP) to:</h5>
-                                        
-                                        @foreach ($order as $key => $item)
-                                        @if($key == 0 )
-                                        <?php 
-                                        $name = $item->customer->name;
-                                        $email = $item->customer->email;
-                                        $address1 = $item->customer->address1;
-                                        $address2 = $item->customer->address2;
-                                        $phone = $item->customer->phone;
-                                        ?>
-                                        @endif
-                                        @endforeach
                                         <span class="text-light-white ">{{$name}}</span>
                                         <span class="text-light-white ">{{$email}}</span>
                                         <span class="text-light-white ">{{$address1}}</span>

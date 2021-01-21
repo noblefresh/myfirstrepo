@@ -12,7 +12,9 @@
         <div class="container" >
             <div class="row">
                 <div class="col-md-12">
+                    @foreach ($productdetails as $value)
                     <h5 class="text-uppercase text-light bg-danger p-3 shadow">{{$value->name}}</h5>
+                    @endforeach
                 </div>
                 {{-- <div class="col-md-12">
 

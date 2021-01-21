@@ -62,23 +62,33 @@
     <div class="inner-wrapper">
         <div class="container-fluid no-padding">
         <div class="row no-gutters overflow-auto">
-            <div class="col-md-6">
+            <div class="col-md-6" id="main-banner-login">
             <div class="main-banner">
-                <img src="assets/img/banner/banner-1.jpg" class="img-fluid full-width main-img" alt="banner">
+                <img src="{{asset('assets/img/banner/banner-1.jpg')}}" class="img-fluid full-width main-img" alt="banner">
                 <div class="overlay-2 main-padding">
-                <img src="assets/img/logo-2.jpg" class="img-fluid" alt="logo">
+                
                 </div>
-                <img src="assets/img/banner/burger.png" class="footer-img" alt="footer-img">
+                {{-- <img src="assets/img/banner/burger.png" class="footer-img" alt="footer-img"> --}}
             </div>
             </div>
             <div class="col-md-6">
             <div class="section-2 user-page main-padding">
                 <div class="login-sec">
+                    <div style="text-align: center" class="mb-5">
+                        <img src="{{asset('images/logo.png')}}" id="logo-login" class="img-fluid" style="width: 200px" alt="logo">
+                    </div>
                 <div class="login-box">
                     <form method="POST" action="{{ route('login') }}">
                     @csrf
                         <h4 class="text-light-black fw-600">Sign in with your account</h4>
                         <div class="row">
+                            <div class="col-md-12">
+                            @if(session('existing'))
+                                <div class="alert alert-danger">
+                                    {{ session('existing') }}
+                                </div>
+                            @endif
+                            </div>
                             <div class="col-12">
                             <div class="form-group">
                                 <label class="text-light-white fs-14">Email</label>
@@ -119,6 +129,17 @@
         </div>
         </div>
     </div>
+
+    <style>
+        @media only screen and (max-width: 580px) {
+            #main-banner-login{
+                height: 50px;
+            }
+            #logo-login{
+                display: none;
+            }
+        }
+    </style>
 
 
     <!-- Place all Scripts Here -->

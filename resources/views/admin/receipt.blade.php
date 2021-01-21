@@ -47,12 +47,11 @@
                       <div class="container">
                         <div class="row">
                           <div class="col-md-12" style="text-align: center">
-                            <div class="logo-sn ms-d-block-lg">
+                            <div class="logo-sn ms-d-block-lg mt-3">
                               <a class="pl-0 ml-0 text-center" href="">
-                                <img src="{{asset('admin/img/costic/costic-logo-216x62.png')}}" alt="logo">
+                                <img src="{{asset('images/logo.png')}}" alt="logo">
                               </a>
                             </div>
-                            <h3 class="text-bold">Chinmark Restaurants</h3>
                           </div>
                         </div>
                       </div>
@@ -146,7 +145,7 @@
                         </div>
                         </div>
                         <div class="invoice-buttons text-right mt-3"> 
-                            <a href="#" class="btn btn-primary">Print Invoice</a>
+                            <a href="#" onclick="window.print();" class="btn btn-primary">Print Invoice</a>
                         </div>
                       </div>
                     </div>

@@ -11,8 +11,18 @@
             <li class="breadcrumb-item active" aria-current="page">Menu Grid</li>
           </ol>
         </nav>
-        
           <div class="row">
+            <div class="col-md-12">
+              <div class="ms-nav-item ms-search-form pb-0 py-0 mb-4" style="text-align: right">
+                <form class="ms-form" method="post">
+                  <div class="ms-form-group my-0 mb-0 has-icon fs-14">
+                    <input type="search" class="ms-form-input bg-light" name="searchproduct" placeholder="Search product..." value=""> <i class="flaticon-search text-disabled"></i>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="row" id="pro_list">
               @foreach ($foods as $show)
               <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                 <div class="ms-card">
@@ -27,11 +37,7 @@
                     </div>
                     <div class="new meta">
                       <p>ID:{{$show->productid}}</p>
-                      @foreach($menu as $item)
-                      @if($show->menu == $item->menuid)
-                      <span class="badge badge-success">{{$item->name}}</span>
-                      @endif
-                      @endforeach
+                      <span class="badge badge-success">{{$show->menudet->name}}</span>
                     </div>
                     <p>
                       <?php

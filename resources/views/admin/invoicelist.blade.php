@@ -31,16 +31,18 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach ($list as $item)
                     <tr>
-                      <th scope="row">15451</th>
-                      <td>French Fries</td>
+                      <th scope="row">{{$item->orderid}}</th>
+                      <td>{{$item->created_at}}</td>
                       <td>001</td>
                       <td>19/02/2020</td>
-                      <td>10</td>
+                      <td>{{$item->id}}</td>
                       <td>$10</td>
                       <td><a href="#"><i class="fas fa-print text-success"></i></a> </i></a>
                       </td>
                     </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>

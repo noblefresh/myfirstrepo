@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,7 @@ Route::get('/sign-in', [App\Http\Controllers\PageController::class, 'login'])->n
 Route::get('/create-account', [App\Http\Controllers\PageController::class, 'register'])->name('create-account');
 Route::get('/process-checkout', [App\Http\Controllers\PageController::class, 'process_checkout'])->name('process_checkout');
 Route::get('/view-cart', [App\Http\Controllers\PageController::class, 'view_cart'])->name('view-cart');
-Route::get('/order-details', [App\Http\Controllers\PageController::class, 'order_details'])->name('order-details');
+Route::get('/order-details/{id}', [App\Http\Controllers\PageController::class, 'order_details'])->name('order-details');
 Route::get('/contact', [App\Http\Controllers\PageController::class, 'contact'])->name('contact');
 Route::get('/about', [App\Http\Controllers\PageController::class, 'about'])->name('about');
 Route::get('/privacy-policy', [App\Http\Controllers\PageController::class, 'privacy'])->name('privacy');
@@ -54,9 +55,11 @@ Route::get('/delete_cart_item', [App\Http\Controllers\CartController::class, 'de
 Route::get('/clear_cart', [App\Http\Controllers\CartController::class, 'clear_cart']);
 Route::get('/loadcartview', [App\Http\Controllers\CartController::class, 'load_cart_view']);
 Route::post('/create_customer', [App\Http\Controllers\CustomerController::class, 'store']);
-Route::get('/save_order2/{customerid}', [App\Http\Controllers\CustomerController::class, 'save_order2']);
+Route::get('/save_order', [App\Http\Controllers\CustomerController::class, 'save_order']);
+Route::get('/save_order_auth', [App\Http\Controllers\CustomerController::class, 'save_order_auth']);
 Route::post('/save_contact', [App\Http\Controllers\ContactController::class, 'store']);
 Route::post('/save_email', [App\Http\Controllers\NewsletterController::class, 'store']);
+Route::get('/CheckCustomer', [CustomerController::class, 'CheckCustomer']);
 
 
 
@@ -100,3 +103,5 @@ Route::post('/update_delivery/{id}', [App\Http\Controllers\PolicyController::cla
 Route::post('/save_todo', [App\Http\Controllers\TodoController::class, 'store']);
 Route::get('delete_todo/{id}', [App\Http\Controllers\TodoController::class, 'destroy']);
 Route::get('/print/{orderid}', [App\Http\Controllers\HomeController::class, 'print']);
+Route::get('/searchproduct', [App\Http\Controllers\HomeController::class, 'searchproduct']);
+Route::get('/searchorder', [App\Http\Controllers\HomeController::class, 'searchorder']);

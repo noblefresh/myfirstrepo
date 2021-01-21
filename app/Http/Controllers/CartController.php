@@ -111,6 +111,14 @@ class CartController extends Controller
         }
     }
 
+    public static function delete_cart_items($ip_addr){
+        if(DB::delete('delete from carts where ip = ?', [$ip_addr])){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     /**
      * Display the specified resource.
      *

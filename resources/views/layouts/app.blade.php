@@ -7,8 +7,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Costic Dashboard</title>
+  <title>Chinmark Restaurant Dashboard</title>
   <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('js/home.js') }}"></script>
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('css/mycss.css') }}" rel="stylesheet">
   <!-- Iconic Fonts -->
@@ -27,7 +28,7 @@
   <!-- Costic styles -->
   <link href="{{asset('admin/css/style.css')}}" rel="stylesheet">
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{asset('images/favicon.png')}}">
 </head>
 
 <body class="ms-body ms-aside-left-open ms-primary-theme ms-has-quickbar">
@@ -56,7 +57,7 @@
     <!-- Logo -->
     <div class="logo-sn ms-d-block-lg">
       <a class="pl-0 ml-0 text-center" href="">
-        <img src="{{asset('admin/img/costic/costic-logo-216x62.png')}}" alt="logo">
+        <img src="{{asset('images/logo.png')}}" alt="logo">
       </a>
     </div>
 
@@ -127,7 +128,7 @@
       <!-- orders end -->
       <!-- restaurants -->
       <li class="menu-item">
-        <a href="pages/restaurants.html"> <span><i class="fa fa-tasks fs-16"></i>Restaurants List</span>
+        <a href="#"> <span><i class="fa fa-tasks fs-16"></i>Coming soon...</span>
         </a>
       </li>
       <!-- restaurants end -->
@@ -263,16 +264,9 @@
         <span class="ms-toggler-bar bg-primary"></span>
       </div>
       <div class="logo-sn logo-sm ms-d-block-sm">
-        <a class="pl-0 ml-0 text-center navbar-brand mr-0" href="index.html"><img src="{{asset('admin/img/costic/costic-logo-84x41.png')}}" alt="logo"> </a>
+        <a class="pl-0 ml-0 text-center navbar-brand mr-0" href="{{route('home')}}"><img src="{{asset('images/logo.png')}}" alt="logo"> </a>
       </div>
       <ul class="ms-nav-list ms-inline mb-0" id="ms-nav-options">
-        <li class="ms-nav-item ms-search-form pb-0 py-0">
-          <form class="ms-form" method="post">
-            <div class="ms-form-group my-0 mb-0 has-icon fs-14">
-              <input type="search" class="ms-form-input" name="search" placeholder="Search here..." value=""> <i class="flaticon-search text-disabled"></i>
-            </div>
-          </form>
-        </li>
         <li class="ms-nav-item dropdown"> <a href="#" class="text-disabled ms-has-notification" id="mailDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flaticon-mail"></i></a>
           <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="mailDropdown">
             <li class="dropdown-menu-header">

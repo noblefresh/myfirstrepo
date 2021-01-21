@@ -23,7 +23,7 @@
                             <div class="ms-form-group has-icon">
                                 <label>Manu Name</label>
                                 <input type="text" placeholder="Name" class="form-control" name="name" value="{{$show->name}}" required>
-                                <i class="material-icons">email</i>
+                                <i class="material-icons">adjust</i>
                             </div>
                             <div class="ms-form-group">
                                 <label>Visiablity</label>

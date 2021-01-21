@@ -75,7 +75,11 @@ class HomeController extends Controller
 
     // Displaying invoice list here
     public function invoicelist(){
-        return view('admin.invoicelist');
+        // $allinvoice = order::select('orderid')->distinct('orderid')->paginate(20);
+        $allinvoice = DB::table('orders')->select(DB::raw('DISTINCT orderid, COUNT(*) AS id'))->groupBy('orderid')->orderBy('id', 'desc')->paginate(20);
+
+        // return $allinvoice;
+        return view('admin.invoicelist',['list'=>$allinvoice]);
     }
 
     // Invoice details
@@ -122,6 +126,53 @@ class HomeController extends Controller
     public function print($orderid){
         $printInvoice = order::where('orderid',$orderid)->get();
         return view('admin.receipt',['order'=>$printInvoice]);
+    }
+
+    //Searching Product
+    public function searchproduct(Request $request){
+        if($request->data == ''){
+            $getAllFood = product::orderBy('id','DESC')->get();
+        }else{
+            $getAllFood = product::where('name', 'LIKE', '%' . $request->data . '%')
+            // ->orWhere()
+            ->orderBy('id','DESC')->get();
+        }
+
+        foreach($getAllFood as $food){
+            $food->menu = $food->menudet;
+        }
+        
+        return json_encode(['foods'=>$getAllFood]);
+    }
+
+    // Searching Order
+    public function searchorder(Request $request){
+        if($request->data == ''){
+            $allorder = order::orderBy('id','DESC')->get();
+        }else{
+            $allorder = order::where('status', 'like', '%' . $request->data . '%')
+            ->orWhere(function($query) use ($request){
+                $id = $this->searchCustomer($request->data);
+                return $query->where('customerid', $id);
+            })
+            ->orWhere('orderid', 'like', '%' . $request->data . '%')
+            ->get();
+        }
+
+        foreach ($allorder as $order) {
+            $order->product = $order->product;
+            $order->customer = $order->customer;
+        }
+
+        return json_encode($allorder);
+    }
+
+    public function searchCustomer($name)
+    {
+        $customers = customer::where('name', 'like', '%' . $name . '%')->get();
+        foreach ($customers as $customer) {
+            return $customer->id;
+        }
     }
     
 }

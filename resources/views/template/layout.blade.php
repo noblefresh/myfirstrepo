@@ -9,7 +9,7 @@
     <meta name="description" content="#">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Quickmunch | Food Delivery Hub</title>
+    <title>Chinmark Group | Food Delivery Hub</title>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
@@ -19,7 +19,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="#">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="#">
     <link rel="apple-touch-icon-precomposed" href="#">
-    <link rel="shortcut icon" href="#">
+    <link rel="shortcut icon" href="{{asset('images/favicon.png')}}">
     <!-- Bootstrap -->
     <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Fontawesome -->
@@ -46,20 +46,6 @@
 </head>
 
 <body>
-    <!-- advertise-banner -->
-    {{-- <div class="banner-adv-bg">
-      <div id="banner-adv" class="banner-adv">
-        <div class="flex-adv">
-            <a href="https://themeforest.net/item/costic-food-dashboard-html5-template/28164952" target="_blank">
-                <i class="fas fa-gift"></i> 
-                <span class="text">Get FREE CRM Dashboard with Quickmunch.</span>
-            </a>
-            <a href="https://themeforest.net/item/costic-food-dashboard-html5-template/28164952" target="_blank"  class="btn-second btn-submit">View Dashboard here</a>
-            </div> 
-            <span class="close-banner"></span>
-        </div>
-    </div> --}}
-     <!-- advertise-banner -->
     <?php
     // Setting a cookie
     if(isset($_COOKIE["ip"])){
@@ -81,8 +67,8 @@
                     <div class="col-12 mainNavCol">
                         <!-- logo -->
                         <div class="logo mainNavCol">
-                            <a href="index.html">
-                                <img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+                            <a href="{{route('welcome')}}">
+                                <img src="{{asset('images/logo.png')}}" class="img-fluid p-3" alt="Logo">
                             </a>
                         </div>
                         <!-- logo -->
@@ -156,7 +142,7 @@
                                                                 <ul>
                                                                 <?php
                                                                 use App\Models\menu;
-                                                                $getmenu = menu::orderBy('id','DESC')->limit(5)->get();
+                                                                $getmenu = menu::where('status','published')->orderBy('id','DESC')->limit(5)->get();
                                                                 ?>
                                                                 @foreach($getmenu as $menu)
                                                                     <li><a href="{{url('/showmenu/'.$menu->menuid)}}" class="text-light-white fw-500">{{$menu->name}}</a></li>
@@ -177,8 +163,8 @@
                                                                     </li>
                                                                     <li><a href="{{route('faq')}}" class="text-light-white fw-500">FAQ</a>
                                                                     </li>
-                                                                    <li><a href="list-view.html" class="text-light-white fw-500">List View</a>
-                                                                    </li>
+                                                                    {{-- <li><a href="list-view.html" class="text-light-white fw-500">List View</a>
+                                                                    </li> --}}
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -188,15 +174,15 @@
                                                                     <h6 class="cat-name"><a href="#" class="text-light-black">Additional Pages</a></h6>
                                                                 </div>
                                                                 <ul>
-                                                                    <li><a href="login.html" class="text-light-white fw-500">Login</a>
+                                                                    <li><a href="{{route('signin')}}" class="text-light-white fw-500">Login</a>
                                                                     </li>
-                                                                    <li><a href="register.html" class="text-light-white fw-500">Sign-up</a>
+                                                                    <li><a href="{{route('delivery')}}" class="text-light-white fw-500">Delivery</a>
                                                                     </li>
-                                                                    <li><a href="checkout.html" class="text-light-white fw-500">Checkout</a>
+                                                                    <li><a href="{{route('privacy')}}" class="text-light-white fw-500">Privacy Policy</a>
                                                                     </li>
-                                                                    <li><a href="order-details.html" class="text-light-white fw-500">Order Details</a>
+                                                                    <li><a href="{{route('terms')}}" class="text-light-white fw-500">Terms & Conditions</a>
                                                                     </li>
-                                                                    <li><a href="geo-locator.html" class="text-light-white fw-500">Geo Locator</a>
+                                                                    {{-- <li><a href="geo-locator.html" class="text-light-white fw-500">Geo Locator</a> --}}
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -407,12 +393,10 @@
                                 <?php
                                 $getmenufoot = menu::where('status','published')->orderBy('id','DESC')->limit(5)->get();
                                 ?>
-                                @foreach($getmenu as $menufoot)
+                                @foreach($getmenufoot as $menufoot)
                                     {{-- <li><a href="{{url('/showmenu/'.$menu->menuid)}}" class="text-light-white fw-500">{{$menu->name}}</a></li> --}}
-                                    <li><a href="{{url('/showmenu/'.$menu->menuid)}}" class="text-light-white fw-600">{{$menu->name}}</a></li>
+                                    <li><a href="{{url('/showmenu/'.$menu->menuid)}}" class="text-light-white fw-600">{{$menufoot->name}}</a></li>
                                 @endforeach
-                                
-                                
                             </ul>
                         </div>
                     </div>

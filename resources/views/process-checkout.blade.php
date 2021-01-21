@@ -143,13 +143,13 @@
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                        <div class="">
+                                                        {{-- <div class="">
                                                             <a href="{{url('/save_order2/'.$value->id)}}" id="saveorder2" class="btn btn-primary">Save</a>
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
-                                                    <input type="hidden" id="amount" value="{{$total}}">
-                                                    <input type="hidden" id="email" value="{{$value->email}}">
-                                                    <input type="hidden" id="number" value="{{$value->phone}}">
+                                                    <input type="hidden" id="customerid" value="{{$value->id}}">
+                                                    <input type="hidden" id="emailauth" value="{{$value->email}}">
+                                                    <input type="hidden" id="numberauth" value="{{$value->phone}}">
                                                     @endforeach
                                                 @else
                                                 {{-- If Not Authenticated User --}}
@@ -174,12 +174,16 @@
                                                             <div class="form-group">
                                                                 <label class="text-light-black fw-700">Contact Email <sup class="fs-16">*</sup></label>
                                                                 <input type="email" id="email" name="email" class="form-control form-control-submit" placeholder="i.e joe@example.com" required>
+                                                                <small class="text-danger">
+                                                                    <em class="email_err"></em>
+                                                                </small>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-12">
                                                             <div class="form-group">
                                                                 <label class="text-light-black fw-700">Contact Phone <sup class="fs-16">*</sup></label>
                                                                 <input type="text" id="number" name="phone" class="form-control form-control-submit" placeholder="i.e +234 804 874 9483" required>
+                                                                
                                                             </div>
                                                         </div>
                                                     </div>
@@ -213,7 +217,7 @@
                                                         <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label class="text-light-black fw-700">State <sup class="fs-16">*</sup></label>
-                                                                <select class="form-control form-control-submit custom-select-2 full-width"name="state" required>
+                                                                <select class="form-control form-control-submit custom-select-2 full-width" name="state" required>
                                                                     <option value="">Select State</option>
                                                                     <option value="Enugu">Enugu</option>
                                                                     <option value="Lagos">Lagos</option>
@@ -240,13 +244,22 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="e">
+                                                        <span class="text-danger">
+                                                            <em class="email_err"></em>
+                                                        </span>
+                                                    </div>
                                                     <div class="">
                                                         <button id="saveorder" type="submit" class="btn btn-primary">Save</button>
                                                     </div>
                                                 @endauth
                                             </form>
                                             <div class="step-footer">
+                                                @auth
                                                 <button class="btn-first white-btn" id="next-1">Next</button>
+                                                @else
+                                                <button class="btn-first white-btn" disabled id="next-1">Next</button>
+                                                @endauth
                                             </div>
                                         </div>
                                     </div>
@@ -316,12 +329,17 @@
 
                                                 <div class="col-nd-12 p-3">
                                                     <div class="step-footer">
+                                                        
                                                         <button class="btn-first white-btn none" id="prev-1">Previous</button>
-                                                        <button class="btn-first white-btn none" id="prev-2">Previous</button>
-                                                        <button class="btn-first white-btn none" id="prev-3">Previous</button>
+                                                        {{-- <button class="btn-first white-btn none" id="prev-2">Previouss</button>
+                                                        <button class="btn-first white-btn none" id="prev-3">Previouses</button> --}}
+                                                        @auth
+                                                        <button class="btn-first white-btn" id="next-2auth">Next</button>
+                                                        @else
                                                         <button class="btn-first white-btn none" id="next-2">Next</button>
-                                                        <button class="btn-first white-btn none" id="next-3">Next</button>
-                                                        <button class="btn-first white-btn none" id="finish-1">Finish</button>
+                                                        @endauth
+                                                        {{-- <button class="btn-first white-btn none" id="next-3">Next</button>
+                                                        <button class="btn-first white-btn none" id="finish-1">Finish</button> --}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -339,9 +357,12 @@
                                                             <div class="tab-content">
                                                                 <div class="form-group">
                                                                     <script src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
+                                                                    @auth
+                                                                    <button id="payauth" class="btn-first green-btn text-custom-white full-width fw-500">Place Your Order</button>
+                                                                    @else
                                                                     <button id="pay" class="btn-first green-btn text-custom-white full-width fw-500">Place Your Order</button>
+                                                                    @endauth
                                                                 </div>
-                                                                {{-- <button class="btn btn-primary" id="process_order">Click here</button> --}}
                                                                 <p class="text-center text-light-black no-margin">By placing your order, you agree to Quickmunch's <a href="#">terms of use</a> and <a href="#">privacy agreement</a>
                                                                 </p>
                                                             </div>
@@ -494,6 +515,9 @@
                         </div>
                     </div>
                 </div>
+                @auth
+                <input type="hidden" id="amount" value="{{$total}}">
+                @endauth
             </div>
             <div class="col-lg-3">
                 {{-- Sidebar Start --}}

@@ -220,6 +220,70 @@ $(document).ready(function(){
     
         // if(amount != ""){
             
+        payWithRave() // TRIGGER PAYWITHRAVE TO POP-UP
+
+        function payWithRave() {
+
+            var x = getpaidSetup({
+                PBFPubKey: 'FLWPUBK_TEST-492831b584fbd1539b8fa9c8cc455428-X',
+                customer_email: email,
+                amount: amount,
+                customer_phone: phone,
+                currency: "NGN",
+                txref: "rave-123456",
+                meta: [{
+                    metaname: "flightID",
+                    metavalue: "AP1234"
+                }],
+                onclose: function() {
+                    $('#msg').html('');
+                },
+                callback: function(response) {
+                    var txref = response.tx.txRef; // collect txRef returned and pass to a                  server page to complete status check.
+                    console.log("This is the response returned after a charge", response);
+                    if (
+                        response.tx.chargeResponseCode == "00" ||
+                        response.tx.chargeResponseCode == "0"
+                    ) {
+                        $email = $('#email').val();
+                        // saving order
+                        $.ajax({
+                            type:'get',
+                            url:'/save_order',
+                            data:{email:$email},
+                            dataType:'json',
+                            success: function(res){
+                                if(res.status == 'success'){
+                                    window.location.href = res.url;
+                                    // alert('inside');
+                                }
+                                // console.log('outside', res);
+                            },
+                            error: function(e,r,error){
+                                console.log(error);
+                            }
+                        });
+    
+                    } else {
+                        $('#errorModal').on('show.bs.modal', function(){
+                            $('#modalMsg').text("An error occured while proccessing payment, try again later");
+                        });
+                        $('#errorModal').modal('show');
+                    }
+    
+                    x.close(); // use this to close the modal immediately after payment.
+                }
+            });
+        }
+    });
+
+    // RETURNING CUSTOMER PAYMENT PROCESSING
+    $('#payauth').on('click',function(){
+       
+        let email = $('#emailauth').val().toString();
+        let amount = $('#amount').val();
+        let phone = $('#numberauth').val().toString();
+             
             payWithRave() // TRIGGER PAYWITHRAVE TO POP-UP
 
             function payWithRave() {
@@ -245,25 +309,36 @@ $(document).ready(function(){
                             response.tx.chargeResponseCode == "00" ||
                             response.tx.chargeResponseCode == "0"
                         ) {
-        
-                            $('#saveorder').click();
-                            // $('#proccessingModal').modal('show');
+                            $customerid = $('#customerid').val();
+                            // saving order
+                            $.ajax({
+                                type:'get',
+                                url:'/save_order_auth',
+                                data:{customerid:$customerid},
+                                dataType:'json',
+                                success: function(res){
+                                    if(res.status == 'success'){
+                                        window.location.href = res.url;
+                                        // alert('inside');
+                                    }
+                                    // console.log('outside', res);
+                                },
+                                error: function(e,r,error){
+                                    console.log(error);
+                                }
+                            });
         
                         } else {
-                            // redirect to a failure page.
-                            // $('#failModal').modal('show');
-                            alert('error');
+                            $('#errorModal').on('show.bs.modal', function(){
+                                $('#modalMsg').text("An error occured while proccessing payment, try again later");
+                            });
+                            $('#errorModal').modal('show');
                         }
         
                         x.close(); // use this to close the modal immediately after payment.
                     }
                 });
             }
-
-        // }else{
-        //     alert('INVALID AMOUNT');
-        // }
-
     });
 
 });

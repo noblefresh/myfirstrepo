@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\product;
 use App\Models\order;
 use App\Models\privacy_term_delivery;
+use App\Models\menu;
 
 class PageController extends Controller
 {
@@ -58,8 +59,9 @@ class PageController extends Controller
     }
 
     // Displaying Order Details
-    public function order_details(){
-        return view('order-details');
+    public function order_details($orderid){
+        $fetchOrder = order::where('orderid', $orderid)->get();
+        return view('order-details', ['order'=>$fetchOrder]);
     }
 
     // Customer Account Landing Page
@@ -123,8 +125,8 @@ class PageController extends Controller
 
     // Foods
     public function foods(){
-        $getAllFoods = product::orderBy('id','DESC')->get();
-        return view('foods',['product'=>$getAllFoods]);
+        $getAllFoodMenus = menu::where('status','published')->get();
+        return view('foods',['menus'=>$getAllFoodMenus]);
     }
     
     /**
